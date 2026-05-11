@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react'
-import api from '../services/api'
+import { getRandomGames } from '../services/api'
 
 function Home() {
   const [games, setGames] = useState([])
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_API_URL)
-    api.get('/games')
-      .then(res => console.log(res.data))
+    getRandomGames()
+      .then(data => {
+        console.log(data)
+        setGames(data)
+      })
       .catch(err => console.error(err))
   }, [])
 
-  return <h1>Home</h1>
+  return 
+  <div>
+    <h1>Home</h1>
+    <p>Juegos cargados: {games.length}</p>
+  </div>
+  
 }
 
 export default Home;
