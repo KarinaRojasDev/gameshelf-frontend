@@ -22,7 +22,7 @@ function Header() {
       <nav>
         {user ? (
           <>
-            <Link to={`/profile/${user._id}`}>Mi perfil</Link>
+            <Link to={`/profile/${user.id}`}>Mi perfil</Link>
             <button type="button" onClick={handleLogout}>
               Cerrar sesión
             </button>
