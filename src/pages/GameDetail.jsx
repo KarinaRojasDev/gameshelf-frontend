@@ -1,12 +1,16 @@
 // src/pages/GameDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getGameById } from "../services/api";
+import { getGameById, addGameToList, createReview } from "../services/api";
+import useAuth from "../context/useAuth.js";
 
 function GameDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState([]);
+  const [status, setStatus] = useState("pending");
+  const [message, setMessage] = useState("");
+  const { user } = useAuth();
 
   useEffect(() => {
     getGameById(id)
@@ -14,7 +18,9 @@ function GameDetail() {
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!game) return <p>Cargando...</p>;
+  if (!game || !game.name) return <p>Cargando...</p>;
+  console.log(game);
+  
 
 
   return (
@@ -32,6 +38,23 @@ function GameDetail() {
       <p>Plataformas: {game.platforms.join(", ")}</p>
       <p>Fecha de lanzamiento: {game.released}</p>
       <p>{game.description}</p>
+      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="pending">Pendiente</option>
+        <option value="playing">Jugando</option>
+        <option value="completed">Completado</option>
+        <option value="abandoned">Abandonado</option>
+        <option value="wishlist">Lista de deseos</option>
+      </select>
+      <button
+        onClick={() => {
+          addGameToList({ rawgId: Number(id), status })
+            .then(() => setMessage("Juego añadido a la lista ✓"))
+            .catch(() => setMessage("Error al añadir el juego"));
+        }}
+      >
+        Añadir a mi lista
+      </button>
+      {message && <p>{message}</p>}
     </div>
   );
 }
