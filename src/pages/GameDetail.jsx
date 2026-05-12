@@ -19,7 +19,6 @@ function GameDetail() {
 
   return (
     <div>
-      <button onClick={() => navigate(-1)}>← Volver</button>
       <h2>{game.name}</h2>
       {game.media.type === "gallery" ? (
         game.media.images.map((img, index) => (
