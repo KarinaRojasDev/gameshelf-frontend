@@ -5,6 +5,7 @@ import {
   getUserList,
   getUserReviews,
   updateUser,
+  removeGameFromList,
 } from "../services/api";
 
 function Profile() {
@@ -13,7 +14,6 @@ function Profile() {
   const [gameList, setGameList] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [uploading, setUploading] = useState(false);
-  
 
   useEffect(() => {
     getUserById(id)
@@ -47,7 +47,6 @@ function Profile() {
 
   if (!profile) return <p>Cargando...</p>;
   console.log(gameList);
-  
 
   return (
     <div>
@@ -85,6 +84,18 @@ function Profile() {
             <img src={game.image} alt={game.name} width="100" />
             <p>{game.name}</p>
             <p>{game.genres ? game.genres.join(", ") : "Sin géneros"}</p>
+            <p>Estado: {game.status}</p>
+            <button
+              onClick={() => {
+                removeGameFromList(game.rawgId).then(() =>
+                  setGameList((prev) =>
+                    prev.filter((g) => g.rawgId !== game.rawgId),
+                  ),
+                );
+              }}
+            >
+              Eliminar
+            </button>
           </div>
         ))
       )}
