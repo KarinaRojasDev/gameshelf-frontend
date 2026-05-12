@@ -26,10 +26,10 @@ function App() {
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
 
        {/* GAME DETAIL */}
-      <Route path="/games/:id" element={<GameDetail />} />
+      <Route path="/games/:id" element={<ProtectedRoute><GameDetail /></ProtectedRoute>}/>
 
       {/* PROFILE */}
-      <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/profile/:id" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
 
       {/* 404 */}
       <Route path="*" element={<Navigate to="/" replace />} />
