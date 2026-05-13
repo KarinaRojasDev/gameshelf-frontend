@@ -39,12 +39,36 @@ function GameDetail() {
   return (
     <div>
       <h2>{game.name}</h2>
-      {game.media.type === "gallery" ? (
-        game.media.images.map((img, index) => (
-          <img key={index} src={img} alt={game.name} width="200" />
-        ))
-      ) : (
-        <img src={game.media.image} alt={game.name} width="400" />
+      {/* Imagen principal */}
+      <img src={game.image} alt={game.name} width="400" />
+
+      {/* Screenshots */}
+      {game.screenshots?.length > 0 && (
+        <div>
+          <h3>Screenshots</h3>
+          {game.screenshots.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`${game.name} screenshot ${index + 1}`}
+              width="300"
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Videos */}
+      {game.videos?.length > 0 && (
+        <div>
+          <h3>Trailer</h3>
+          <iframe
+            width="560"
+            height="315"
+            src={game.videos[0]}
+            title={game.name}
+            allowFullScreen
+          />
+        </div>
       )}
       <p>Rating: {game.rating}</p>
       <p>Géneros: {game.genres.join(", ")}</p>
