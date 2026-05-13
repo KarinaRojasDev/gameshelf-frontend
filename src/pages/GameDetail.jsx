@@ -10,6 +10,8 @@ function GameDetail() {
   const [game, setGame] = useState([]);
   const [status, setStatus] = useState("pending");
   const [message, setMessage] = useState("");
+  const [review, setReview] = useState({ rating: "", content: "" });
+  const [reviewMessage, setReviewMessage] = useState("");
   const { user } = useAuth();
 
   useEffect(() => {
@@ -19,9 +21,20 @@ function GameDetail() {
   }, [id]);
 
   if (!game || !game.name) return <p>Cargando...</p>;
-  console.log(game);
-  
 
+  const handleCreateReview = () => {
+    createReview({
+      gameName: game.name,
+      rawgId: Number(id),
+      rating: Number(review.rating),
+      content: review.content,
+    })
+      .then(() => {
+        setReviewMessage("Reseña creada ✓");
+        setReview({ rating: "", content: "" });
+      })
+      .catch(() => setReviewMessage("Error al crear la reseña"));
+  };
 
   return (
     <div>
@@ -55,6 +68,26 @@ function GameDetail() {
         Añadir a mi lista
       </button>
       {message && <p>{message}</p>}
+      <h3>Escribir reseña</h3>
+      <input
+        type="number"
+        min="1"
+        max="10"
+        placeholder="Rating (1-10)"
+        value={review.rating}
+        onChange={(e) =>
+          setReview((prev) => ({ ...prev, rating: e.target.value }))
+        }
+      />
+      <textarea
+        placeholder="Escribe tu reseña..."
+        value={review.content}
+        onChange={(e) =>
+          setReview((prev) => ({ ...prev, content: e.target.value }))
+        }
+      />
+      <button onClick={handleCreateReview}>Publicar reseña</button>
+      {reviewMessage && <p>{reviewMessage}</p>}
     </div>
   );
 }

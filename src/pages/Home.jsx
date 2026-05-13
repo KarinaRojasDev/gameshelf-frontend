@@ -9,7 +9,6 @@ function Home() {
   useEffect(() => {
     getRandomGames()
       .then((data) => {
-        console.log(data);
         setGames(data);
       })
       .catch((err) => console.error(err));
