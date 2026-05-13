@@ -7,6 +7,7 @@ import {
   getUserReviews,
   updateUser,
   removeGameFromList,
+  deleteReview,
 } from "../services/api";
 
 function Profile() {
@@ -15,6 +16,8 @@ function Profile() {
   const [gameList, setGameList] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [editingBio, setEditingBio] = useState(false);
+  const [bio, setBio] = useState("");
 
   useEffect(() => {
     getUserById(id)
@@ -48,6 +51,18 @@ function Profile() {
 
   if (!profile) return <p>Cargando...</p>;
 
+  const handleSaveBio = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("bio", bio);
+      const data = await updateUser(id, formData);
+      setProfile((prev) => ({ ...prev, bio: data.bio }));
+      setEditingBio(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div>
       <h1>{profile.username}</h1>
@@ -73,7 +88,29 @@ function Profile() {
               : "Subir foto"}
         </button>
       </label>
-      <p>{profile.bio || "Sin bio"}</p>
+      {editingBio ? (
+        <div>
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            placeholder="Escribe tu bio..."
+          />
+          <button onClick={handleSaveBio}>Guardar</button>
+          <button onClick={() => setEditingBio(false)}>Cancelar</button>
+        </div>
+      ) : (
+        <div>
+          <p>{profile.bio || "Sin bio"}</p>
+          <button
+            onClick={() => {
+              setBio(profile.bio || "");
+              setEditingBio(true);
+            }}
+          >
+            Editar bio
+          </button>
+        </div>
+      )}
 
       <h2>Lista de juegos ({gameList.length})</h2>
       {gameList.length === 0 ? (
@@ -110,6 +147,15 @@ function Profile() {
             <p>Rating: {review.rating}</p>
             <p>{review.content}</p>
             <p>{review.createdAt.slice(0, 10)}</p>
+            <button
+              onClick={() => {
+                deleteReview(review.id).then(() =>
+                  setReviews((prev) => prev.filter((r) => r.id !== review.id)),
+                );
+              }}
+            >
+              Eliminar reseña
+            </button>
           </div>
         ))
       )}
