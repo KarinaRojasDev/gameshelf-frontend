@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {
   getUserById,
@@ -46,7 +47,6 @@ function Profile() {
   };
 
   if (!profile) return <p>Cargando...</p>;
-  console.log(gameList);
 
   return (
     <div>
@@ -106,7 +106,7 @@ function Profile() {
       ) : (
         reviews.map((review) => (
           <div key={review.id}>
-            <p>Juego ID: {review.rawgId}</p>
+            <Link to={`/games/${review.rawgId}`}>{review.gameName}</Link>
             <p>Rating: {review.rating}</p>
             <p>{review.content}</p>
             <p>{review.createdAt.slice(0, 10)}</p>
