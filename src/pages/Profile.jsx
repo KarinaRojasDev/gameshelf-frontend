@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import StarRating from "../components/StarRating.jsx";
 import {
   getUserById,
   getUserList,
@@ -144,7 +145,7 @@ function Profile() {
         reviews.map((review) => (
           <div key={review.id}>
             <Link to={`/games/${review.rawgId}`}>{review.gameName}</Link>
-            <p>Rating: {review.rating}</p>
+            <StarRating rating={review.rating} readOnly />
             <p>{review.content}</p>
             <p>{review.createdAt.slice(0, 10)}</p>
             <button

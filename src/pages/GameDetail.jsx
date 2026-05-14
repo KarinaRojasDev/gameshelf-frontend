@@ -1,8 +1,14 @@
 // src/pages/GameDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getGameById, addGameToList, createReview } from "../services/api";
+import {
+  getGameById,
+  addGameToList,
+  createReview,
+  getGameReviews,
+} from "../services/api";
 import useAuth from "../context/useAuth.js";
+import StarRating from "../components/StarRating.jsx";
 
 function GameDetail() {
   const { id } = useParams();
@@ -12,11 +18,15 @@ function GameDetail() {
   const [message, setMessage] = useState("");
   const [review, setReview] = useState({ rating: "", content: "" });
   const [reviewMessage, setReviewMessage] = useState("");
+  const [gameReviews, setGameReviews] = useState([]);
   const { user } = useAuth();
 
   useEffect(() => {
     getGameById(id)
       .then((data) => setGame(data))
+      .catch((err) => console.error(err));
+    getGameReviews(id)
+      .then((data) => setGameReviews(data))
       .catch((err) => console.error(err));
   }, [id]);
 
@@ -29,11 +39,17 @@ function GameDetail() {
       rating: Number(review.rating),
       content: review.content,
     })
-      .then(() => {
-        setReviewMessage("Reseña creada ✓");
+      .then((data) => {
+        showMessage(setReviewMessage, "Reseña creada ✓");
         setReview({ rating: "", content: "" });
+        setGameReviews((prev) => [...prev, data.review]);
       })
-      .catch(() => setReviewMessage("Error al crear la reseña"));
+      .catch(() => showMessage(setReviewMessage, "Error al crear la reseña"));
+  };
+
+  const showMessage = (setter, text) => {
+    setter(text);
+    setTimeout(() => setter(""), 3000);
   };
 
   return (
@@ -85,22 +101,30 @@ function GameDetail() {
       <button
         onClick={() => {
           addGameToList({ rawgId: Number(id), status })
-            .then(() => setMessage("Juego añadido a la lista ✓"))
-            .catch(() => setMessage("Error al añadir el juego"));
+            .then(() => showMessage(setMessage, "Juego añadido a la lista ✓"))
+            .catch(() => showMessage(setMessage, "Error al añadir el juego"));
         }}
       >
         Añadir a mi lista
       </button>
       {message && <p>{message}</p>}
+      <h3>Reseñas ({gameReviews.length})</h3>
+      {gameReviews.length === 0 ? (
+        <p>No hay reseñas todavía</p>
+      ) : (
+        gameReviews.map((review) => (
+          <div key={review.id}>
+            <StarRating rating={review.rating} readOnly />
+            <p>{review.content}</p>
+            <p>{review.createdAt.slice(0, 10)}</p>
+          </div>
+        ))
+      )}
       <h3>Escribir reseña</h3>
-      <input
-        type="number"
-        min="1"
-        max="10"
-        placeholder="Rating (1-10)"
-        value={review.rating}
-        onChange={(e) =>
-          setReview((prev) => ({ ...prev, rating: e.target.value }))
+      <StarRating
+        rating={review.rating}
+        onRatingChange={(star) =>
+          setReview((prev) => ({ ...prev, rating: star }))
         }
       />
       <textarea
