@@ -6,12 +6,12 @@ function GuestRoute({ children }) {
 
   if (isLoading) {
     return (
-      <main className="auth-status-page">
-        <section className="auth-status-card">
-          <p className="auth-status-text">Comprobando acceso...</p>
-        </section>
-      </main>
-    )
+  <main>
+    <section>
+      <p>Comprobando acceso...</p>
+    </section>
+  </main>
+)
   }
 
   if (user) {

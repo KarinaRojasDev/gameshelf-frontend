@@ -1,5 +1,5 @@
 import { Navigate, Routes, Route } from "react-router-dom";
-import Header from "./components/Header.jsx";
+import Header from "./components/Header/Header.jsx";
 import HomeRedirect from "./components/HomeRedirect.jsx";
 import GuestRoute from "./components/GuestRoute.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -7,8 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Home from "./pages/Home.jsx";
 import GameDetail from "./pages/GameDetail.jsx";
 import Profile from "./pages/Profile.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 function App() {
   
@@ -24,7 +23,7 @@ function App() {
         path="/login"
         element={
           <GuestRoute>
-            <Login />
+            <AuthPage />
           </GuestRoute>
         }
       />
@@ -34,7 +33,7 @@ function App() {
         path="/register"
         element={
           <GuestRoute>
-            <Register />
+            <AuthPage />
           </GuestRoute>
         }
       />
