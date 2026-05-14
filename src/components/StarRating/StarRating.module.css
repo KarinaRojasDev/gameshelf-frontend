@@ -1,0 +1,16 @@
+.starRating {
+}
+
+.starRatingStar {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc;
+}
+
+.starRatingStar[data-active="true"] {
+  color: #FFD700;
+}
+
+.starRatingStar[data-read-only="true"] {
+  cursor: default;
+}

@@ -1,25 +1,26 @@
 // src/pages/GameDetail.jsx
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getGameById,
   addGameToList,
   createReview,
   getGameReviews,
 } from "../services/api";
-import useAuth from "../context/useAuth.js";
-import StarRating from "../components/StarRating.jsx";
+import Button from "../components/Button/Button.jsx";
+import MediaCarousel from "../components/MediaCarousel/MediaCarousel.jsx";
+import ReviewCard from "../components/ReviewCard/ReviewCard.jsx";
+import ReviewForm from "../components/ReviewForm/ReviewForm.jsx";
+import styles from "./GameDetail.module.css";
 
 function GameDetail() {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const [game, setGame] = useState([]);
+  const [game, setGame] = useState(null);
   const [status, setStatus] = useState("pending");
   const [message, setMessage] = useState("");
   const [review, setReview] = useState({ rating: "", content: "" });
   const [reviewMessage, setReviewMessage] = useState("");
   const [gameReviews, setGameReviews] = useState([]);
-  const { user } = useAuth();
 
   useEffect(() => {
     getGameById(id)
@@ -53,52 +54,26 @@ function GameDetail() {
   };
 
   return (
-    <div>
-      <h2>{game.name}</h2>
-      {/* Imagen principal */}
-      <img src={game.image} alt={game.name} width="400" />
-
-      {/* Screenshots */}
-      {game.screenshots?.length > 0 && (
-        <div>
-          <h3>Screenshots</h3>
-          {game.screenshots.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`${game.name} screenshot ${index + 1}`}
-              width="300"
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Videos */}
-      {game.videos?.length > 0 && (
-        <div>
-          <h3>Trailer</h3>
-          <iframe
-            width="560"
-            height="315"
-            src={game.videos[0]}
-            title={game.name}
-            allowFullScreen
-          />
-        </div>
-      )}
-      <p>Rating: {game.rating}</p>
-      <p>Géneros: {game.genres.join(", ")}</p>
-      <p>Plataformas: {game.platforms.join(", ")}</p>
-      <p>Fecha de lanzamiento: {game.released}</p>
-      <p>{game.description}</p>
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+    <main className={styles.gameDetailPage}>
+      <h2 className={styles.gameDetailTitle}>{game.name}</h2>
+      <MediaCarousel game={game} />
+      <p className={styles.gameDetailRating}>Rating: {game.rating}</p>
+      <p className={styles.gameDetailGenres}>Géneros: {game.genres.join(", ")}</p>
+      <p className={styles.gameDetailPlatforms}>Plataformas: {game.platforms.join(", ")}</p>
+      <p className={styles.gameDetailReleased}>Fecha de lanzamiento: {game.released}</p>
+      <p className={styles.gameDetailDescription}>{game.description}</p>
+      <select
+        className={styles.gameDetailStatusSelect}
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      >
         <option value="pending">Pendiente</option>
         <option value="playing">Jugando</option>
         <option value="completed">Completado</option>
         <option value="abandoned">Abandonado</option>
         <option value="wishlist">Lista de deseos</option>
       </select>
-      <button
+      <Button
         onClick={() => {
           addGameToList({ rawgId: Number(id), status })
             .then(() => showMessage(setMessage, "Juego añadido a la lista ✓"))
@@ -106,37 +81,23 @@ function GameDetail() {
         }}
       >
         Añadir a mi lista
-      </button>
-      {message && <p>{message}</p>}
-      <h3>Reseñas ({gameReviews.length})</h3>
+      </Button>
+      {message && <p className={styles.gameDetailMessage}>{message}</p>}
+      <h3 className={styles.gameDetailReviewsTitle}>Reseñas ({gameReviews.length})</h3>
       {gameReviews.length === 0 ? (
-        <p>No hay reseñas todavía</p>
+        <p className={styles.gameDetailEmptyReviews}>No hay reseñas todavía</p>
       ) : (
-        gameReviews.map((review) => (
-          <div key={review.id}>
-            <StarRating rating={review.rating} readOnly />
-            <p>{review.content}</p>
-            <p>{review.createdAt.slice(0, 10)}</p>
-          </div>
+        gameReviews.map((gameReview) => (
+          <ReviewCard key={gameReview.id} review={gameReview} />
         ))
       )}
-      <h3>Escribir reseña</h3>
-      <StarRating
-        rating={review.rating}
-        onRatingChange={(star) =>
-          setReview((prev) => ({ ...prev, rating: star }))
-        }
+      <ReviewForm
+        review={review}
+        setReview={setReview}
+        onSubmit={handleCreateReview}
+        reviewMessage={reviewMessage}
       />
-      <textarea
-        placeholder="Escribe tu reseña..."
-        value={review.content}
-        onChange={(e) =>
-          setReview((prev) => ({ ...prev, content: e.target.value }))
-        }
-      />
-      <button onClick={handleCreateReview}>Publicar reseña</button>
-      {reviewMessage && <p>{reviewMessage}</p>}
-    </div>
+    </main>
   );
 }
 export default GameDetail;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getRandomGames, searchGames } from "../services/api";
-import { Link } from "react-router-dom"
+import GameCard from "../components/GameCard/GameCard.jsx";
+import SearchBar from "../components/SearchBar/SearchBar.jsx";
+import styles from "./Home.module.css";
 
 function Home() {
   const [games, setGames] = useState([]);
@@ -15,42 +17,27 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
-      <input
-        type="text"
-        placeholder="Buscar juego..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button
-        onClick={() => {
+    <main className={styles.homePage}>
+      <h1 className={styles.homePageTitle}>Home</h1>
+      <SearchBar
+        input={input}
+        setInput={setInput}
+        onSearch={() => {
           if (input.trim() === "") return;
           searchGames(input).then((data) => setGames(data));
         }}
-      >
-        Buscar
-      </button>
-      <button
-        onClick={() => {
+        onClear={() => {
           setInput("");
           getRandomGames().then((data) => setGames(data));
         }}
-      >
-        Limpiar
-      </button>
-      <p>Juegos cargados: {games.length}</p>
-      {games.map((game) => (
-        <div key={game.id}>
-          <img src={game.image} alt={game.name} width="200" />
-          <Link to={`/games/${game.id}`}>
-          <h2>{game.name}</h2>
-          </Link>
-          <p>Rating: {game.rating}</p>
-          <p>Géneros: {game.genres.join(", ")}</p>
-        </div>
-      ))}
-    </div>
+      />
+      <p className={styles.homePageCount}>Juegos cargados: {games.length}</p>
+      <div className={styles.homePageGames}>
+        {games.map((game) => (
+          <GameCard key={game.id} game={game} />
+        ))}
+      </div>
+    </main>
   );
 }
 

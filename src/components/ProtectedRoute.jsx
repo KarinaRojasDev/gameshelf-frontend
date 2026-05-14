@@ -6,12 +6,12 @@ function ProtectedRoute({ children }) {
 
   if (isLoading) {
     return (
-       <main className="auth-status-page">
-        <section className="auth-status-card">
-          <p className="auth-status-text">Cargando sesión...</p>
-        </section>
-      </main>
-    )
+  <main>
+    <section>
+      <p>Cargando sesión...</p>
+    </section>
+  </main>
+)
   }
 
   if (!user) {
