@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* COLORES BASE */
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-bg: #121214;
+  --color-surface: #1A1A1D;
+  --color-surface-light: #222228;
+  --color-surface-hover: #2A2A30;
+
+  /* COLORES DE MARCA */
+  --color-primary: #00F0FF;
+  --color-secondary: #9D00FF;
+  --color-tertiary: #FF005C;
+
+  /* TEXTO */
+  --color-text: #F5F7FA;
+  --color-text-muted: #9CA3AF;
+
+  /* BORDES */
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* TIPOGRAFÍA */
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "JetBrains Mono", monospace;
+
+  /* RADIOS */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* TRANSICIÓN */
+  --transition: 0.2s ease;
+
+  /* GLASS / PANEL */
+  --color-glass-bg: rgba(26, 26, 29, 0.8);
+  --color-glass-border: rgba(59, 73, 75, 0.45);
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  /* FONDOS DE INPUT */
+  --color-input-bg: #0e0e10;
+  --color-placeholder: rgba(156, 163, 175, 0.45);
+
+  /* GLOW AMBIENTE */
+  --color-primary-glow: rgba(0, 240, 255, 0.06);
+  --color-secondary-glow: rgba(157, 0, 255, 0.06);
+  --color-primary-glow-hover: rgba(0, 240, 255, 0.35);
+
+  /* FEEDBACK - PRIMARY */
+  --color-primary-bg: rgba(0, 240, 255, 0.08);
+  --color-primary-border: rgba(0, 240, 255, 0.2);
+
+  /* FEEDBACK - ERROR / TERTIARY */
+  --color-tertiary-bg: rgba(255, 0, 92, 0.1);
+  --color-tertiary-border: rgba(255, 0, 92, 0.25);
+
+  /* PROFILE / AVATAR */
+  --avatar-purple: #8A2BE2;
+  --avatar-pink: #FF00FF;
+  --avatar-indigo: #4B0082;
+  --avatar-cyan: #00FFFF;
+  --avatar-dark: #282828;
+  --avatar-size: 90px;
+}
+
+/* RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer,
+header, hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* GLOBAL */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-glow);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -10%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  border-radius: var(--radius-full);
+  background: var(--color-secondary-glow);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
