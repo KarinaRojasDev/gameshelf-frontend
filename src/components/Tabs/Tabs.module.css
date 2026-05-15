@@ -1,14 +1,68 @@
 .tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.tabsTitle {
+/* HEADER TABS */
+.tabsHeader {
+  display: flex;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
+/* TAB BOTÓN */
+.tabsTab {
+  flex: 1;
+  padding: 28px 24px;
+  background: var(--color-surface);
+  border: none;
+  border-bottom: 3px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+  text-align: center;
+  border-radius: 0;
+}
+
+.tabsTab:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+/* TAB ACTIVA */
+.tabsTabActive {
+  background: var(--color-primary-bg);
+  border-bottom: 3px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* PANEL */
+.tabsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* EMPTY STATE */
 .tabsEmptyMessage {
-}
-
-.tabsGamesPanel {
-}
-
-.tabsReviewsPanel {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  padding: 24px;
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
