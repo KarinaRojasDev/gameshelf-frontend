@@ -1,16 +1,32 @@
 .starRating {
+    display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
 }
 
+/* ESTRELLA */
 .starRatingStar {
+   font-size: 1.5rem;
+  color: var(--color-text-muted);
   cursor: pointer;
-  font-size: 24px;
-  color: #ccc;
+  transition: color var(--transition), transform var(--transition);
+  line-height: 1;
 }
 
+/* ESTRELLA ACTIVA */
 .starRatingStar[data-active="true"] {
-  color: #FFD700;
+  color: var(--color-primary);
 }
 
+/* HOVER solo cuando no es readOnly */
+.starRatingStar[data-read-only="false"]:hover {
+  color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* READ ONLY sin cursor */
 .starRatingStar[data-read-only="true"] {
   cursor: default;
 }

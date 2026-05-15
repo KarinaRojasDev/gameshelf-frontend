@@ -18,12 +18,15 @@ function UserInfo({
     <div className={styles.userInfo}>
       <h1 className={styles.userInfoUsername}>{profile.username}</h1>
       {profile.avatar && (
-        <img
-          className={styles.userInfoAvatar}
-          src={profile.avatar}
-          alt={profile.username}
-          width="100"
-        />
+        <div className={styles.userInfoAvatarWrapper}>
+          <span className={styles.userInfoAvatarRing}></span>
+          <img
+            className={styles.userInfoAvatar}
+            src={profile.avatar}
+            alt={profile.username}
+            width="100"
+          />
+        </div>
       )}
       <label>
         <input
