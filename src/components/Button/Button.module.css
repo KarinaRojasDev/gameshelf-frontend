@@ -1,11 +1,40 @@
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .buttonPrimary {
+  background-color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .buttonSecondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
 .buttonDanger {
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
 }

@@ -1,14 +1,48 @@
 .gameCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+
+.gameCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
 }
 
 .gameCardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
 }
 
 .gameCardTitle {
+  padding: 12px 12px 4px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.gameCard:hover .gameCardTitle {
+  color: var(--color-primary);
 }
 
 .gameCardRating {
+  padding: 0 12px 4px;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  color: var(--color-primary);
 }
 
 .gameCardGenres {
+  padding: 0 12px 12px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
 }

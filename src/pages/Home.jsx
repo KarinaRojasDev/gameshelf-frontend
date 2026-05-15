@@ -18,20 +18,21 @@ function Home() {
 
   return (
     <main className={styles.homePage}>
-      <h1 className={styles.homePageTitle}>Home</h1>
-      <SearchBar
-        input={input}
-        setInput={setInput}
-        onSearch={() => {
-          if (input.trim() === "") return;
-          searchGames(input).then((data) => setGames(data));
-        }}
-        onClear={() => {
-          setInput("");
-          getRandomGames().then((data) => setGames(data));
-        }}
-      />
-      <p className={styles.homePageCount}>Juegos cargados: {games.length}</p>
+      <div className={styles.homePageHeader}>
+        <h1 className={styles.homePageTitle}>Trending Now</h1>
+        <SearchBar
+          input={input}
+          setInput={setInput}
+          onSearch={() => {
+            if (input.trim() === "") return;
+            searchGames(input).then((data) => setGames(data));
+          }}
+          onClear={() => {
+            setInput("");
+            getRandomGames().then((data) => setGames(data));
+          }}
+        />
+      </div>
       <div className={styles.homePageGames}>
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
