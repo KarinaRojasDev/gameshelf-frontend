@@ -18,7 +18,7 @@ function GameDetail() {
   const [game, setGame] = useState(null);
   const [status, setStatus] = useState("pending");
   const [message, setMessage] = useState("");
-  const [review, setReview] = useState({ rating: "", content: "" });
+  const [review, setReview] = useState({ rating: 0, content: "" });
   const [reviewMessage, setReviewMessage] = useState("");
   const [gameReviews, setGameReviews] = useState([]);
 
@@ -34,6 +34,10 @@ function GameDetail() {
   if (!game || !game.name) return <p>Cargando...</p>;
 
   const handleCreateReview = () => {
+    if (review.rating === 0) {
+      showMessage(setReviewMessage, "Selecciona una puntuación");
+      return;
+    }
     createReview({
       gameName: game.name,
       rawgId: Number(id),
@@ -42,7 +46,7 @@ function GameDetail() {
     })
       .then((data) => {
         showMessage(setReviewMessage, "Reseña creada ✓");
-        setReview({ rating: "", content: "" });
+        setReview({ rating: 0, content: "" });
         setGameReviews((prev) => [...prev, data.review]);
       })
       .catch(() => showMessage(setReviewMessage, "Error al crear la reseña"));
@@ -58,9 +62,16 @@ function GameDetail() {
       <h2 className={styles.gameDetailTitle}>{game.name}</h2>
       <MediaCarousel game={game} />
       <p className={styles.gameDetailRating}>Rating: {game.rating}</p>
-      <p className={styles.gameDetailGenres}>Géneros: {game.genres.join(", ")}</p>
-      <p className={styles.gameDetailPlatforms}>Plataformas: {game.platforms.join(", ")}</p>
-      <p className={styles.gameDetailReleased}>Fecha de lanzamiento: {game.released}</p>
+      <p className={styles.gameDetailGenres}>
+        Géneros: {game.genres?.join(", ") || "Sin géneros"}
+      </p>
+
+      <p className={styles.gameDetailPlatforms}>
+        Plataformas: {game.platforms?.join(", ") || "Sin plataformas"}
+      </p>
+      <p className={styles.gameDetailReleased}>
+        Fecha de lanzamiento: {game.released}
+      </p>
       <p className={styles.gameDetailDescription}>{game.description}</p>
       <select
         className={styles.gameDetailStatusSelect}
@@ -83,7 +94,9 @@ function GameDetail() {
         Añadir a mi lista
       </Button>
       {message && <p className={styles.gameDetailMessage}>{message}</p>}
-      <h3 className={styles.gameDetailReviewsTitle}>Reseñas ({gameReviews.length})</h3>
+      <h3 className={styles.gameDetailReviewsTitle}>
+        Reseñas ({gameReviews.length})
+      </h3>
       {gameReviews.length === 0 ? (
         <p className={styles.gameDetailEmptyReviews}>No hay reseñas todavía</p>
       ) : (

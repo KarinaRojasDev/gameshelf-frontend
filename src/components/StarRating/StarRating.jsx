@@ -7,7 +7,11 @@ function StarRating({ rating, onRatingChange, readOnly = false }) {
         <span
           className={styles.starRatingStar}
           key={star}
-          onClick={() => !readOnly && onRatingChange(star)}
+          onClick={() => {
+            if (!readOnly && typeof onRatingChange === "function") {
+              onRatingChange(star);
+            }
+          }}
           data-active={star <= rating}
           data-read-only={readOnly}
         >
