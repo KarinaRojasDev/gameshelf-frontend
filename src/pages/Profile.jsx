@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner/Spinner.jsx";
 import Tabs from "../components/Tabs/Tabs.jsx";
 import UserInfo from "../components/UserInfo/UserInfo.jsx";
 import {
@@ -51,7 +52,7 @@ function Profile() {
     }
   };
 
-  if (!profile) return <p className={styles.profilePageLoading}>Cargando...</p>;
+  if (!profile) return <Spinner />;
 
   const handleSaveBio = async () => {
     try {
