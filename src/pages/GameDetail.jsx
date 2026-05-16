@@ -7,6 +7,7 @@ import {
   createReview,
   getGameReviews,
 } from "../services/api";
+import Spinner from "../components/Spinner/Spinner.jsx";
 import Button from "../components/Button/Button.jsx";
 import MediaCarousel from "../components/MediaCarousel/MediaCarousel.jsx";
 import ReviewCard from "../components/ReviewCard/ReviewCard.jsx";
@@ -31,7 +32,7 @@ function GameDetail() {
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!game || !game.name) return <p>Cargando...</p>;
+  if (!game || !game.name) return <Spinner />;
 
   const handleCreateReview = () => {
     if (review.rating === 0) {
