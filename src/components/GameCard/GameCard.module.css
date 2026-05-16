@@ -46,3 +46,20 @@
   font-size: 0.75rem;
   color: var(--color-text-muted);
 }
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .gameCardImage {
+    height: 220px;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .gameCard:hover {
+    transform: translateY(-4px);
+  }
+  .gameCardImage {
+    height: 240px;
+  }
+}

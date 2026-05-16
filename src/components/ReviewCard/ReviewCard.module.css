@@ -2,23 +2,19 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   position: relative;
   z-index: 1;
   transition: background-color var(--transition);
 }
 
-.reviewCard:hover {
-  background: var(--color-surface-hover);
-}
-
 /* LINK AL JUEGO */
 .reviewCardGameLink {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-primary);
   transition: opacity var(--transition);
@@ -31,7 +27,7 @@
 /* CONTENIDO */
 .reviewCardContent {
   color: var(--color-text);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
@@ -47,4 +43,33 @@
 /* BOTÓN ELIMINAR */
 .reviewCardDeleteButton {
   align-self: flex-start;
+}
+
+/*  TABLET */
+@media (min-width: 768px) {
+  .reviewCard {
+    padding: 22px;
+    gap: 14px;
+  }
+  .reviewCardGameLink {
+    font-size: 1rem;
+  }
+  .reviewCardContent {
+    font-size: 0.925rem;
+  }
+  .reviewCard:hover {
+  background: var(--color-surface-hover);
+}
+
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .reviewCard {
+    padding: 24px;
+    gap: 16px;
+  }
+  .reviewCardContent {
+    font-size: 0.95rem;
+  }
 }

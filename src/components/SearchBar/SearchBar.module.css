@@ -1,6 +1,6 @@
 .searchBar {
   width: 100%;
-  max-width: 300px;
+  max-width: 100%;
 }
 
 .searchBarInputWrapper {
@@ -18,7 +18,7 @@
   border-radius: var(--radius-full);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1rem;
   outline: none;
   transition: border-color var(--transition);
 }
@@ -42,4 +42,24 @@
 
 .searchBarClear:hover {
   color: var(--color-text);
+}
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .searchBar {
+    max-width: 240px;
+  }
+  .searchBarInput {
+    font-size: 0.95rem;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .searchBar {
+    max-width: 300px;
+  }
+  .searchBarInput {
+    font-size: 0.9rem;
+  }
 }

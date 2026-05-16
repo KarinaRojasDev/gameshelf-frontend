@@ -150,3 +150,12 @@ a {
 * {
   box-sizing: border-box;
 }
+/*  MÓVIL  */
+@media (max-width: 767px) {
+  body::before,
+  body::after {
+    width: 80%;
+    height: 40%;
+    filter: blur(80px);
+  }
+}

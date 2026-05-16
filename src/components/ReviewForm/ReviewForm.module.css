@@ -2,10 +2,10 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   position: relative;
   z-index: 1;
 }
@@ -13,7 +13,7 @@
 /* TÍTULO */
 .reviewFormTitle {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -53,4 +53,33 @@
   font-size: 0.875rem;
   color: var(--color-primary);
   font-family: var(--font-body);
+}
+
+/*  TABLET */
+@media (min-width: 768px) {
+  .reviewForm {
+    padding: 22px;
+    gap: 18px;
+  }
+  .reviewFormTitle {
+    font-size: 1.05rem;
+  }
+  .reviewFormTextarea {
+    min-height: 110px;
+  }
+}
+
+/*  DESKTOP */
+@media (min-width: 1024px) {
+  .reviewForm {
+    padding: 24px;
+    gap: 20px;
+  }
+  .reviewFormTitle {
+    font-size: 1.1rem;
+  }
+  .reviewFormTextarea {
+    min-height: 120px;
+    padding: 12px 8px;
+  }
 }

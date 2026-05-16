@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 48px 24px;
+  gap: 24px;
+  padding: 24px 16px;
   position: relative;
   z-index: 1;
   min-height: 100vh;
@@ -20,4 +20,20 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+}
+
+/*  TABLET */
+@media (min-width: 768px) {
+  .profilePage {
+    gap: 32px;
+    padding: 36px 24px;
+  }
+}
+
+/*  DESKTOP */
+@media (min-width: 1024px) {
+  .profilePage {
+    gap: 40px;
+    padding: 48px 24px;
+  }
 }
