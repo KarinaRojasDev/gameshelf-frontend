@@ -2,21 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 32px;
+  gap: 12px;
+  padding: 20px 16px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   position: relative;
   z-index: 1;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
 /* USERNAME */
 .userInfoUsername {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-text);
   letter-spacing: -0.01em;
@@ -25,16 +25,16 @@
 /* AVATAR */
 .userInfoAvatarWrapper {
   position: relative;
-  width: 180px;
-  height: 180px;
-  margin-bottom: 8px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 6px;
 }
 
 .userInfoAvatarRing {
   position: relative;
   display: block;
-  width: 180px;
-  height: 180px;
+  width: 120px;
+  height: 120px;
   border-radius: var(--radius-full);
   background: linear-gradient(
     var(--avatar-indigo),
@@ -47,12 +47,12 @@
 
 .userInfoAvatar {
   position: absolute;
-  width: 170px;
-  height: 170px;
+  width: 112px;
+  height: 112px;
   border-radius: var(--radius-full);
   object-fit: cover;
-  left: 5px;
-  top: 5px;
+  left: 4px;
+  top: 4px;
   background-color: var(--avatar-dark);
 }
 
@@ -69,10 +69,10 @@
 /* BIO TEXTO */
 .userInfoBio {
   color: var(--color-text-muted);
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   text-align: center;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 /* BIO TEXTAREA */
@@ -114,5 +114,63 @@
   align-self: center;
 }
 
+.userInfoAvatarButton,
 .userInfoBioEditButton {
+  align-self: center;
+  min-width: 160px;
+  justify-content: center;
+}
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .userInfo {
+    width: 90%;
+    gap: 14px;
+    padding: 26px 24px;
+  }
+  .userInfoUsername {
+    font-size: 2rem;
+  }
+  .userInfoAvatarWrapper,
+  .userInfoAvatarRing {
+    width: 150px;
+    height: 150px;
+  }
+  .userInfoAvatar {
+    width: 142px;
+    height: 142px;
+    left: 4px;
+    top: 4px;
+  }
+  .userInfoBio {
+    font-size: 1.1rem;
+    max-width: 500px;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .userInfo {
+    width: 80%;
+    gap: 16px;
+    padding: 32px;
+  }
+  .userInfoUsername {
+    font-size: 2.5rem;
+  }
+  .userInfoAvatarWrapper,
+  .userInfoAvatarRing {
+    width: 180px;
+    height: 180px;
+  }
+  .userInfoAvatar {
+    width: 170px;
+    height: 170px;
+    left: 5px;
+    top: 5px;
+  }
+  .userInfoBio {
+    font-size: 1.2rem;
+    max-width: 600px;
+  }
 }

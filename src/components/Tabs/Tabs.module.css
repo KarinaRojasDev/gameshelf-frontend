@@ -4,7 +4,7 @@
   gap: 0;
   position: relative;
   z-index: 1;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -12,19 +12,19 @@
 .tabsHeader {
   display: flex;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 /* TAB BOTÓN */
 .tabsTab {
   flex: 1;
-  padding: 28px 24px;
+  padding: 14px 10px;
   background: var(--color-surface);
   border: none;
   border-bottom: 3px solid var(--color-border);
   color: var(--color-text-muted);
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -50,7 +50,7 @@
 .tabsPanel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
   margin: 0 auto;
 }
@@ -58,11 +58,53 @@
 /* EMPTY STATE */
 .tabsEmptyMessage {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
-  padding: 24px;
+  padding: 20px;
   text-align: center;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+}
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .tabs {
+    width: 90%;
+  }
+  .tabsHeader {
+    margin-bottom: 20px;
+  }
+  .tabsTab {
+    padding: 20px 16px;
+    font-size: 0.875rem;
+  }
+  .tabsPanel {
+    gap: 14px;
+  }
+  .tabsEmptyMessage {
+    padding: 22px;
+    font-size: 0.925rem;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .tabs {
+    width: 80%;
+  }
+  .tabsHeader {
+    margin-bottom: 24px;
+  }
+  .tabsTab {
+    padding: 28px 24px;
+    font-size: 1rem;
+  }
+  .tabsPanel {
+    gap: 16px;
+  }
+  .tabsEmptyMessage {
+    padding: 24px;
+    font-size: 0.95rem;
+  }
 }

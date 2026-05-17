@@ -1,5 +1,5 @@
 .gameDetailPage {
-  padding: 32px;
+  padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -10,52 +10,48 @@
 
 .gameDetailTitle {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .gameDetailRating {
   display: inline-block;
   font-family: var(--font-label);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-primary);
   background-color: var(--color-primary-bg);
   border: 1px solid var(--color-primary-border);
   border-radius: var(--radius-full);
-  padding: 4px 12px;
-  margin-bottom: 8px;
+  padding: 4px 10px;
+  margin-bottom: 6px;
 }
 
-.gameDetailGenres {
-  font-size: 0.85rem;
+.gameDetailGenres,
+.gameDetailPlatforms,
+.gameDetailReleased {
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  margin-bottom: 8px;
-}
-
-.gameDetailPlatforms {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .gameDetailReleased {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .gameDetailDescription {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--color-text);
   line-height: 1.8;
-  margin-bottom: 32px;
-  max-width: 800px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  text-align: justify;
 }
 
 .gameDetailStatusSelect {
-  padding: 10px 16px;
+  width: 100%;
+  padding: 12px 16px;
   background-color: var(--color-surface-light);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -65,7 +61,7 @@
   outline: none;
   cursor: pointer;
   margin-bottom: 12px;
-  margin-right: 12px;
+  margin-right: 0;
   transition: border-color var(--transition);
 }
 
@@ -74,7 +70,7 @@
 }
 
 .gameDetailMessage {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-primary);
   margin-top: 8px;
   font-family: var(--font-label);
@@ -82,17 +78,92 @@
 
 .gameDetailReviewsTitle {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text);
-  margin-top: 48px;
-  margin-bottom: 16px;
+  margin-top: 32px;
+  margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--color-border);
 }
 
 .gameDetailEmptyReviews {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+/*  TABLET */
+@media (min-width: 768px) {
+  .gameDetailPage {
+    padding: 24px;
+  }
+  .gameDetailTitle {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+  .gameDetailRating {
+    font-size: 0.825rem;
+    padding: 4px 11px;
+  }
+  .gameDetailDescription {
+    font-size: 0.925rem;
+    margin-bottom: 28px;
+    max-width: 800px;
+  }
+  .gameDetailStatusSelect {
+    width: auto;
+    margin-right: 12px;
+  }
+  .gameDetailReviewsTitle {
+    font-size: 1.2rem;
+    margin-top: 40px;
+    margin-bottom: 14px;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .gameDetailPage {
+    padding: 32px;
+  }
+  .gameDetailTitle {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+  .gameDetailRating {
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+  }
+  .gameDetailGenres,
+  .gameDetailPlatforms,
+  .gameDetailReleased {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  .gameDetailReleased {
+    margin-bottom: 24px;
+  }
+  .gameDetailDescription {
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+  .gameDetailStatusSelect {
+    padding: 10px 16px;
+    margin-bottom: 12px;
+  }
+  .gameDetailMessage {
+    font-size: 0.85rem;
+  }
+  .gameDetailReviewsTitle {
+    font-size: 1.3rem;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+  .gameDetailEmptyReviews {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
 }

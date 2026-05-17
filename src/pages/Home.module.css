@@ -1,5 +1,5 @@
 .homePage {
-  padding: 32px;
+  padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -9,19 +9,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .homePageTitle {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-text);
 }
 
 .homePageGames {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .homePage {
+    padding: 24px;
+  }
+  .homePageHeader {
+    margin-bottom: 20px;
+  }
+  .homePageTitle {
+    font-size: 1.35rem;
+  }
+  .homePageGames {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .homePage {
+    padding: 32px;
+  }
+  .homePageHeader {
+    margin-bottom: 24px;
+  }
+  .homePageTitle {
+    font-size: 1.5rem;
+  }
+  .homePageGames {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
 }

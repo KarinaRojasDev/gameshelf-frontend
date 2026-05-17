@@ -1,14 +1,14 @@
 .starRating {
-    display: flex;
+  display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   position: relative;
   z-index: 1;
 }
 
 /* ESTRELLA */
 .starRatingStar {
-   font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: color var(--transition), transform var(--transition);
@@ -29,4 +29,24 @@
 /* READ ONLY sin cursor */
 .starRatingStar[data-read-only="true"] {
   cursor: default;
+}
+
+/*  TABLET */
+@media (min-width: 768px) {
+  .starRating {
+    gap: 5px;
+  }
+  .starRatingStar {
+    font-size: 1.65rem;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .starRating {
+    gap: 4px;
+  }
+  .starRatingStar {
+    font-size: 1.5rem;
+  }
 }

@@ -1,18 +1,14 @@
 .gameListItem {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: 12px;
+  padding: 14px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   position: relative;
   z-index: 1;
   transition: background-color var(--transition);
-}
-
-.gameListItem:hover {
-  background-color: var(--color-surface-hover);
 }
 
 /* STATUS */
@@ -30,4 +26,23 @@
 .gameListItemDeleteButton {
   flex-shrink: 0;
   margin-left: auto;
+}
+
+/*  TABLET  */
+@media (min-width: 768px) {
+  .gameListItem {
+    gap: 20px;
+    padding: 18px;
+  }
+}
+
+/*  DESKTOP  */
+@media (min-width: 1024px) {
+  .gameListItem {
+    gap: 24px;
+    padding: 20px;
+  }
+  .gameListItem:hover {
+    background-color: var(--color-surface-hover);
+  }
 }

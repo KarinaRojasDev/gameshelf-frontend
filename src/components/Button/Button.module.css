@@ -2,11 +2,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  min-height: 44px;
   border: none;
   border-radius: var(--radius-md);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   cursor: pointer;
   transition: opacity var(--transition), transform var(--transition);
@@ -37,4 +38,15 @@
 .buttonDanger {
   background-color: var(--color-tertiary);
   color: var(--color-white);
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+   .button {
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+  .button:hover {
+    transform: translateY(-1px);
+  }
 }
